@@ -167,5 +167,11 @@ createApp({
                 }
             ]
         }
-    }
-}).mount(app)
+    },
+    methods: {
+        // metodo per mostrare l'ultimo messaggio
+        ultimoMessaggio(contact) {
+          return contact.messages[contact.messages.length - 1];
+        }
+      }
+    }).mount('#app');

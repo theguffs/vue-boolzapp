@@ -3,24 +3,40 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="style.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <link rel="stylesheet" href="style.css">
         <title>Boolzapp</title>
     </head>
     <body>
-        <header>
-            <h1 class="text-success text-center bg-primary p-3">
-                Boolzapp
-            </h1>
-        </header>
-        <main>
+        <main class="bg-success">
             <!-- parte a sinistrta-->
-            <div class="container d-flex" id="app">
-                <div class="col-4">
-                    <div class="row">
+            <div class="container-fluid" id="app">
+                <div class="col-4 ">
+                    <div class="row search-box">
+                        <!-- Youssef card -->
+                        <div class="card youssef bg-primary border d-block w-100">
+                            <div class="d-flex">
+                                <div class="d-flex">
+                                    <img src="./img/avatar_7.jpg" class="img-fluid rounded-5" alt="Youssef">
+                                    <div>
+                                        <h5 class="card-title">Youssef</h5>
+                                        <p class="card-text text-end text-success "> <strong>online</strong></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <input type="text" class="search" placeholder="cerca contatto...">
                         <div v-for="contact in contacts">
-                              <img :src="contact.avatar">
-                              <p>{{ contact.name }}</p>
+                            <div class="card d-flex">
+                                <div class="d-flex">
+                                    <img :src="contact.avatar" class="img-fluid rounded-5" :alt="contact.name">
+                                    <div>
+                                        <h5 class="card-title">{{ contact.name }}</h5>
+                                        <h6 class="card-text">{{ ultimoMessaggio(contact).message }}</h6>
+                                    </div>
+                                </div>
+                                <p class="text-end">{{ ultimoMessaggio(contact).date }}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -31,10 +47,6 @@
                 </div>
             </div>
         </main>
-        <footer>
-            footer
-        </footer>
-
         <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
         <script src="script.js"></script>
     </body>

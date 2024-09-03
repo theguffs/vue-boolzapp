@@ -1,3 +1,22 @@
-body{
-    outline: solid 1px black;
+/* reset */
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+/* general */
+img{
+    max-width: 100%;
+    width: 60px;
+}
+main{
+    height: 100vh;
+}
+.container{
+    margin-top: 20px;
+}
+/* parte sinistra */
+.youssef,
+.card{
+    width: 100%;
 }
