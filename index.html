@@ -9,10 +9,27 @@
     </head>
     <body>
         <header>
-            header
+            <h1 class="text-success text-center bg-primary p-3">
+                Boolzapp
+            </h1>
         </header>
         <main>
-            <div id="app">{{ message }}</div>
+            <!-- parte a sinistrta-->
+            <div class="container d-flex" id="app">
+                <div class="col-4">
+                    <div class="row">
+                        <div v-for="contact in contacts">
+                              <img :src="contact.avatar">
+                              <p>{{ contact.name }}</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- parte a destra-->
+                <div class="col-8">
+                    <div class="row">
+                    </div>
+                </div>
+            </div>
         </main>
         <footer>
             footer
