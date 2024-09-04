@@ -9,13 +9,12 @@
     </head>
     <body>
         <main class="bg-secondary">
-            <div class="container-fluid" id="app">
-                <div class="col-4 ">
+            <div class="container-fluid d-flex" id="app">
+                <div class="col-4">
                     <div class="row search-box">
                         <!-- parte a sinistra-->
                         <!-- Youssef card  -->
                         <div class="card youssef bg-primary border d-block bg-light">
-                            <div class="d-flex">
                                 <div class="d-flex">
                                     <img src="./img/avatar_7.jpg" class="img-fluid rounded-5" alt="Youssef">
                                     <div>
@@ -23,26 +22,37 @@
                                         <p class="card-text text-end text-success "> <strong>online</strong></p>
                                     </div>
                                 </div>
-                            </div>
                         </div>
                         <input type="text" class="search" placeholder="cerca contatto...">
-                        <div v-for="contact in contacts">
-                            <div class="card d-flex">
-                                <div class="d-flex">
-                                    <img :src="contact.avatar" class=" rounded-5" :alt="contact.name">
-                                    <div>
-                                        <h5 class="card-title">{{ contact.name }}</h5>
-                                        <h6 class="card-text">{{ ultimoMessaggio(contact).message }}</h6>
-                                    </div>
+                        <!-- Lista dei contatti -->
+                    <div v-for="(contact, index) in contacts" :key="index">
+                        <div 
+                            class="card d-flex mb-2 p-2" 
+                            :class="{ 'bg-light': selectedContactIndex === index }" 
+                            @click="selectContact(index)"
+                        >
+                            <div class="d-flex">
+                                <img :src="contact.avatar" class="rounded-5 me-3" :alt="contact.name">
+                                <div>
+                                    <h5 class="card-title m-0">{{ contact.name }}</h5>
+                                    <h6 class="card-text">{{ ultimoMessaggio(contact).message }}</h6>
                                 </div>
-                                <p class="text-end">{{ soloOrario(ultimoMessaggio(contact).date) }}</p>
                             </div>
+                            <p class="text-end text-muted m-0">{{ soloOrario(ultimoMessaggio(contact).date) }}</p>
                         </div>
                     </div>
                 </div>
-                <!-- parte a destra-->
-                <div class="col-8">
-                    <div class="row">
+            </div>
+            <!-- Parte destra -->
+            <div class="col mx-3">
+                <div class="row chat">
+                    <header class="bg-info p-3 rounded-3 d-flex align-items-center">
+                        <img :src="selectedContact.avatar" class="rounded-5 me-3">
+                        <h5 class="m-0">{{ selectedContact.name }}</h5>
+                    </header>
+                        <main>
+                            
+                        </main>
                     </div>
                 </div>
             </div>
