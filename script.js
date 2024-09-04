@@ -176,11 +176,11 @@ createApp({
     // Estrai solo l'orario dalla stringa `date`
         soloOrario(dateString) {
     // divide la stringa di 'date' tra uno spazio vuoto e l'altro
-            let orarioSecondi = dateString.split(' ')[1];
+            let orarioSecondi = dateString.split(' ')[1].split(':');
     // divide 'orarioSecondi' con i 2 punti
-            let ArrayOrario = orarioSecondi.split(':');
-            //il return unisce la prima e la seconda parte di ArrayOrario
-            return ArrayOrario[0] + ':' + ArrayOrario[1];
+            //let ArrayOrario = orarioSecondi.split(':');
+            //il return unisce la prima e la seconda parte di ArrayOrario escludendo il terzo
+            return orarioSecondi[0] + ':' + orarioSecondi[1]
           }
       }
     }).mount('#app');
