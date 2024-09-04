@@ -169,9 +169,18 @@ createApp({
         }
     },
     methods: {
-        // metodo per mostrare l'ultimo messaggio
+    // metodo per mostrare l'ultimo messaggio
         ultimoMessaggio(contact) {
           return contact.messages[contact.messages.length - 1];
-        }
+        },
+    // Estrai solo l'orario dalla stringa `date`
+        soloOrario(dateString) {
+    // divide la stringa di 'date' tra uno spazio vuoto e l'altro
+            let orarioSecondi = dateString.split(' ')[1];
+    // divide 'orarioSecondi' con i 2 punti
+            let ArrayOrario = orarioSecondi.split(':');
+            //il return unisce la prima e la seconda parte di ArrayOrario
+            return ArrayOrario[0] + ':' + ArrayOrario[1];
+          }
       }
     }).mount('#app');

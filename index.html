@@ -29,13 +29,13 @@
                         <div v-for="contact in contacts">
                             <div class="card d-flex">
                                 <div class="d-flex">
-                                    <img :src="contact.avatar" class="img-fluid rounded-5" :alt="contact.name">
+                                    <img :src="contact.avatar" class=" rounded-5" :alt="contact.name">
                                     <div>
                                         <h5 class="card-title">{{ contact.name }}</h5>
                                         <h6 class="card-text">{{ ultimoMessaggio(contact).message }}</h6>
                                     </div>
                                 </div>
-                                <p class="text-end">{{ ultimoMessaggio(contact).date }}</p>
+                                <p class="text-end">{{ soloOrario(ultimoMessaggio(contact).date) }}</p>
                             </div>
                         </div>
                     </div>
