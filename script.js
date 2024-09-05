@@ -212,8 +212,15 @@ createApp({
             }
         },
         // Seleziona il contatto in base all'indice
-        selectContact(index) {
-            this.selectedContactIndex = index;
+        selectContact(filteredIndex) {
+            const filteredContacts = this.getFilteredContacts();
+            const selectedFilteredContact = filteredContacts[filteredIndex];
+
+            // trova index globale del contatti non filtrati
+            const globalIndex = this.contacts.findIndex(contact => contact.name == selectedFilteredContact.name);
+            
+            // Imposta l'indice globale come contatto filtrato
+            this.selectedContactIndex = globalIndex;
         },
         // Metodo per ottenere il contatto selezionato
         selectedContact() {

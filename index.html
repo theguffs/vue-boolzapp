@@ -31,24 +31,22 @@
                         <div v-for="(contact, index) in getFilteredContacts()" :key="index">
                             <div 
                                 class="card d-flex mb-2 p-2" 
-                                :class="{ 'bg-light': selectedContactIndex === index }" 
+                                :class="{ 'bg-light': selectedContactIndex === contacts.findIndex(c => c.name === contact.name) }" 
                                 @click="selectContact(index)"
                             >
                                 <div class="d-flex">
                                     <img :src="contact.avatar" class="rounded-5 me-3" :alt="contact.name">
                                     <div>
                                         <h5 class="card-title m-0">{{ contact.name }}</h5>
-                                        <!-- Mostra l'ultimo messaggio solo se esiste almeno un messaggio (suggerito da michele) -->
-                                        <h6 class="card-text" v-if="contact.messages.length > 0">{{ ultimoMessaggio(contact).message }}</h6>
-                                        <h6 class="card-text" v-else>Nessun messaggio</h6>
+                                        <h6 class="card-text">{{ ultimoMessaggio(contact).message }}</h6>
                                     </div>
                                 </div>
-                                <p class="text-end text-muted m-0">{{ soloOrario(ultimoMessaggio(contact).date) }}</p>
+                                <p class="text-end m-0">{{ soloOrario(ultimoMessaggio(contact).date) }}</p>
                             </div>
                         </div>
                     </div>
                 </div>
-            <!-- Parte destra -->
+                <!-- Parte destra -->
                 <div class="col mx-3 container">
                     <div class="row">
                         <header class="bg-info p-3 rounded-3 d-flex align-items-center">
