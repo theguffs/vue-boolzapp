@@ -14,7 +14,7 @@
                     <div class="row search-box">
                         <!-- parte a sinistra-->
                         <!-- Youssef card  -->
-                        <div class="card youssef bg-primary border d-block bg-light">
+                        <div class="card youssef border d-block bg-light w-75 mx-5">
                                 <div class="d-flex">
                                     <img src="./img/avatar_7.jpg" class="img-fluid rounded-5" alt="Youssef">
                                     <div>
@@ -23,7 +23,7 @@
                                     </div>
                                 </div>
                         </div>
-                        <input type="text" class="search" placeholder="cerca contatto...">
+                        <input type="text" class="search w-75 text-center mx-5" placeholder="cerca contatto...">
                         <!-- Lista dei contatti -->
                     <div v-for="(contact, index) in contacts" :key="index">
                         <div 
@@ -47,8 +47,10 @@
             <div class="col mx-3">
                 <div class="row chat">
                     <header class="bg-info p-3 rounded-3 d-flex align-items-center">
-                        <img :src="selectedContact.avatar" class="rounded-5 me-3">
-                        <h5 class="m-0">{{ selectedContact.name }}</h5>
+                        <!-- Usa selectedContact() per ottenere l'avatar del contatto selezionato -->
+                        <img :src="selectedContact().avatar" class="rounded-5 me-3" alt="Avatar">
+                        <!-- Usa selectedContact() per ottenere il nome del contatto selezionato -->
+                        <h5 class="m-0">{{ selectedContact().name }}</h5>
                     </header>
                         <main>
                             

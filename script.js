@@ -171,24 +171,24 @@ createApp({
         }
     },
     methods: {
-    // metodo per mostrare l'ultimo messaggio
+        // metodo per mostrare l'ultimo messaggio
         ultimoMessaggio(contact) {
           return contact.messages[contact.messages.length - 1];
         },
-    // Estrai solo l'orario dalla stringa `date`
+        // Estrai solo l'orario dalla stringa `date`
         soloOrario(dateString) {
-    // divide la stringa di 'date' tra uno spazio vuoto e l'altro
+        // divide la stringa di 'date' tra uno spazio vuoto e l'altro
         let orarioSecondi = dateString.split(' ')[1].split(':');
-    // divide 'orarioSecondi' con i 2 punti
+        // divide 'orarioSecondi' con i 2 punti
             //let ArrayOrario = orarioSecondi.split(':');
             //il return unisce la prima e la seconda parte di ArrayOrario escludendo il terzo
             return orarioSecondi[0] + ':' + orarioSecondi[1]
           },
-          selectContact(index) {
+        // Seleziona il contatto in base all'indice
+        selectContact(index) {
             this.selectedContactIndex = index;
-        }
-      },
-      computed: {
+        },
+        // Metodo per ottenere il contatto selezionato
         selectedContact() {
             return this.contacts[this.selectedContactIndex];
         }
