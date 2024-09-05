@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <title>Boolzapp</title>
     </head>
     <body>
@@ -23,49 +24,57 @@
                                     </div>
                                 </div>
                         </div>
-                        <input type="text" class="search w-75 text-center mx-5" placeholder="cerca contatto...">
+                        <input type="text" class=" w-75 text-center mx-5" placeholder="cerca contatto...">
                         <!-- Lista dei contatti -->
-                    <div v-for="(contact, index) in contacts" :key="index">
-                        <div 
-                            class="card d-flex mb-2 p-2" 
-                            :class="{ 'bg-light': selectedContactIndex === index }" 
-                            @click="selectContact(index)"
-                        >
-                            <div class="d-flex">
-                                <img :src="contact.avatar" class="rounded-5 me-3" :alt="contact.name">
-                                <div>
-                                    <h5 class="card-title m-0">{{ contact.name }}</h5>
-                                    <h6 class="card-text">{{ ultimoMessaggio(contact).message }}</h6>
+                        <div v-for="(contact, index) in contacts" :key="index">
+                            <div 
+                                class="card d-flex mb-2 p-2" 
+                                :class="{ 'bg-light': selectedContactIndex === index }" 
+                                @click="selectContact(index)"
+                            >
+                                <div class="d-flex">
+                                    <img :src="contact.avatar" class="rounded-5 me-3" :alt="contact.name">
+                                    <div>
+                                        <h5 class="card-title m-0">{{ contact.name }}</h5>
+                                        <h6 class="card-text">{{ ultimoMessaggio(contact).message }}</h6>
+                                    </div>
                                 </div>
+                                <p class="text-end text-muted m-0">{{ soloOrario(ultimoMessaggio(contact).date) }}</p>
                             </div>
-                            <p class="text-end text-muted m-0">{{ soloOrario(ultimoMessaggio(contact).date) }}</p>
                         </div>
                     </div>
                 </div>
-            </div>
             <!-- Parte destra -->
-            <div class="col mx-3">
-                <div class="row chat">
-                    <header class="bg-info p-3 rounded-3 d-flex align-items-center">
-                        <!-- Usa selectedContact() per ottenere l'avatar del contatto selezionato -->
-                        <img :src="selectedContact().avatar" class="rounded-5 me-3" alt="Avatar">
-                        <!-- Usa selectedContact() per ottenere il nome del contatto selezionato -->
-                        <h5 class="m-0">{{ selectedContact().name }}</h5>
-                    </header>
-                    <main class="chat-window">
-                        <div class="date-header">
-                            <p>{{ soloData(ultimoMessaggio(selectedContact()).date) }}</p>
-                        </div>
-                        <!-- Ciclo per mostrare i messaggi -->
-                        <div v-for="message in selectedContact().messages" :class="message.status">
-                            <div class="message p-2 my-2 rounded-3">
-                                <p class="m-0">{{ message.message }}</p>
-                                <small class="text-muted">{{ soloOrario(message.date) }}</small>
+                <div class="col mx-3 container">
+                    <div class="row">
+                        <header class="bg-info p-3 rounded-3 d-flex align-items-center">
+                            <!-- Usa selectedContact() per ottenere l'avatar del contatto selezionato -->
+                            <img :src="selectedContact().avatar" class="rounded-5 me-3" alt="Avatar">
+                            <!-- Usa selectedContact() per ottenere il nome del contatto selezionato -->
+                            <h5 class="m-0">{{ selectedContact().name }}</h5>
+                        </header>
+                        <main>
+                            <p class="text-center">
+                                {{ soloData(ultimoMessaggio(selectedContact()).date) }}
+                            </p>
+                            <!-- Ciclo per mostrare i messaggi -->
+                            <div v-for="message in selectedContact().messages" :class="message.status">
+                                <div class="message p-2 my-2 rounded-3">
+                                    <p class="m-0">{{ message.message }}</p>
+                                    <small>{{ soloOrario(message.date) }}</small>
+                                </div>
                             </div>
+                        </main>
+                    </div>
+                     <!-- chat -->
+                     <div class="chat-container w-100">
+                        <div class="d-flex justify-content-between">
+                            <button><i class="fa-solid fa-face-smile p-2"></i></button>
+                            <input type="text" class="p-2 align-items-end w-75" placeholder="invia un messaggio...">
+                            <button class="p-2">ok</button>
                         </div>
-                    </main>
+                    </div>
                 </div>
-            </div>
             </div>
         </main>
         <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>

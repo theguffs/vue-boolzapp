@@ -10,10 +10,11 @@ img{
     width: 60px;
 }
 main{
-    height: 100vh;
+    max-height: 100%;
 }
 .container{
     margin-top: 20px;
+    position: relative;
 }
 .card:active {
     background-color: beige     ;
@@ -31,7 +32,7 @@ main{
     color: white;
     margin-bottom: 10px;
 }
-/* messaggi inviaTI */
+/* messaggi inviati */
 .sent {
     text-align: right;
     margin-left: auto;
@@ -50,4 +51,9 @@ main{
 .received .message {
     background-color: #fff;
     border: 1px solid #ddd;
+}
+
+.chat-container{
+    position: absolute;
+    bottom: 0;
 }
