@@ -5,10 +5,12 @@ createApp({
         return {
             // Indice del contatto selezionato
             selectedContactIndex: 0,
-             // per il messaggio dell'utente
+             // dato per il messaggio dell'utente
             newMessage: '',
             // dato per filtrare gli utenti
             searchQuery: '',
+            // dato per mostrare il menu a tendina dei messaggi
+            showMessageOptions: null,
             contacts :[
                 {
                     name: 'Michele',
@@ -228,6 +230,23 @@ createApp({
         getFilteredContacts() {
             const query = this.searchQuery.toLowerCase();
             return this.contacts.filter(contact => contact.name.toLowerCase().includes(query));
+        },
+        // metodo per mostrare o nascondere il menù a tendina
+        toggleMessageOptions(index) {
+            if (this.showMessageOptions == index) {
+            // nasconde il menu se è già aperto
+                this.showMessageOptions != null; 
+            // altrimenti mostra il menu per il messaggio cliccato
+            } 
+            else {
+                this.showMessageOptions = index; 
+            }
+        },
+        // cancella il messaggio selezeionato
+        deleteMessage(index) {
+            this.selectedContact().messages.splice(index, 1);
+        // chiude il menu a tendina dopo aver eliminato il messaggio
+            this.showMessageOptions != null; 
         }
     }
     }).mount('#app');

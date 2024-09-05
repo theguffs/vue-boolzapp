@@ -58,3 +58,29 @@ main{
     position: absolute;
     bottom: 0;
 }
+.message-container {
+    position: relative;
+}
+
+.dropdown-menu {
+    background-color: #f8f9fa;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+.dropdown-item {
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.dropdown-item:hover {
+    background-color: #e9ecef;
+}
+
+.dropdown-item.text-danger {
+    color: red;
+}
+
+.dropdown-menu.show {
+    display: block;
+}

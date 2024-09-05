@@ -60,10 +60,14 @@
                                 {{ soloData(ultimoMessaggio(selectedContact()).date) }}
                             </p>
                             <!-- Ciclo per mostrare i messaggi -->
-                            <div v-for="message in selectedContact().messages" :class="message.status">
-                                <div class="message p-2 my-2 rounded-3">
+                            <div v-for="(message, messageIndex) in selectedContact().messages" :class="message.status" class="message-container position-relative">
+                                <div class="message p-2 my-2 rounded-3" @click="toggleMessageOptions(messageIndex)">
                                     <p class="m-0">{{ message.message }}</p>
                                     <small>{{ soloOrario(message.date) }}</small>
+                                </div>
+                                <div v-if="showMessageOptions == messageIndex" class="dropdown-menu show position-absolute">
+                                    <button class="dropdown-item">Inutile</button>
+                                    <button class="dropdown-item text-danger" @click="deleteMessage(messageIndex)">Cancella</button>
                                 </div>
                             </div>
                         </main>
