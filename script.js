@@ -5,6 +5,8 @@ createApp({
         return {
             // Indice del contatto selezionato
             selectedContactIndex: 0,
+             // Nuovo dato per il messaggio dell'utente
+            newMessage: '',
             contacts :[
                 {
                     name: 'Michele',
@@ -194,6 +196,31 @@ createApp({
         // Metodo per ottenere il contatto selezionato
         selectedContact() {
             return this.contacts[this.selectedContactIndex];
+        },
+        sendMessage(sendMessage) {
+            if (this.newMessage.trim() == '') return;
+
+            // Aggiunge il messaggio e lo pusha
+            this.selectedContact().messages.push({
+                date: this.getCurrentDateTime(),
+                message: this.newMessage,
+                status: 'sent'
+            });
+            this.newMessage = '';
+
+            // risposta dell'interlocutore dopo 1 secondo
+            setTimeout(() => {
+                this.selectedContact().messages.push({
+                    date: this.getCurrentDateTime(),
+                    message: 'ok',
+                    status: 'received'
+                });
+            }, 1000);
+        },
+        //funzione per mettere l'orario attuale del messaggio (copiata da internet non l'ho capita)
+        getCurrentDateTime() {
+            const now = new Date();
+            return `${now.toLocaleDateString()} ${now.toLocaleTimeString()}`;
         }
     }
     }).mount('#app');
