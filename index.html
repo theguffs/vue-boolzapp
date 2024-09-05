@@ -13,7 +13,7 @@
             <div class="container-fluid d-flex" id="app">
                 <div class="col-4">
                     <div class="row search-box">
-                        <!-- parte a sinistra-->
+                    <!-- parte a sinistra-->
                         <!-- Youssef card  -->
                         <div class="card youssef border d-block bg-light w-75 mx-5">
                                 <div class="d-flex">
@@ -24,9 +24,11 @@
                                     </div>
                                 </div>
                         </div>
-                        <input type="text" class=" w-75 text-center mx-5" placeholder="cerca contatto...">
+                        <div class="d-flex mx-4">
+                            <input type="text" class="p-2 align-items-end w-75" placeholder="invia un messaggio..." v-model="searchQuery">
+                        </div>
                         <!-- Lista dei contatti -->
-                        <div v-for="(contact, index) in contacts" :key="index">
+                        <div v-for="(contact, index) in getFilteredContacts()" :key="index">
                             <div 
                                 class="card d-flex mb-2 p-2" 
                                 :class="{ 'bg-light': selectedContactIndex === index }" 

@@ -5,8 +5,10 @@ createApp({
         return {
             // Indice del contatto selezionato
             selectedContactIndex: 0,
-             // Nuovo dato per il messaggio dell'utente
+             // per il messaggio dell'utente
             newMessage: '',
+            // dato per filtrare gli utenti
+            searchQuery: '',
             contacts :[
                 {
                     name: 'Michele',
@@ -185,7 +187,7 @@ createApp({
             //let ArrayOrario = orarioSecondi.split(':');
             //il return unisce la prima e la seconda parte di ArrayOrario escludendo il terzo
             return orarioSecondi[0] + ':' + orarioSecondi[1]
-          },
+        },
         soloData(dateString) {
             return dateString.split(' ')[0];
         },
@@ -217,10 +219,15 @@ createApp({
                 });
             }, 1000);
         },
-        //funzione per mettere l'orario attuale del messaggio (copiata da internet non l'ho capita)
+        //funzione per mettere l'orario attuale del messaggio (spiegata dal tutor Loris)
         getCurrentDateTime() {
             const now = new Date();
             return `${now.toLocaleDateString()} ${now.toLocaleTimeString()}`;
+        },
+        // Metodo per ottenere i contatti filtrati
+        getFilteredContacts() {
+            const query = this.searchQuery.toLowerCase();
+            return this.contacts.filter(contact => contact.name.toLowerCase().includes(query));
         }
     }
     }).mount('#app');
