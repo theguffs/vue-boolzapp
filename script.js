@@ -184,6 +184,9 @@ createApp({
             //il return unisce la prima e la seconda parte di ArrayOrario escludendo il terzo
             return orarioSecondi[0] + ':' + orarioSecondi[1]
           },
+          soloData(dateString) {
+            return dateString.split(' ')[0];
+        },
         // Seleziona il contatto in base all'indice
         selectContact(index) {
             this.selectedContactIndex = index;

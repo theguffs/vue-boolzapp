@@ -52,11 +52,20 @@
                         <!-- Usa selectedContact() per ottenere il nome del contatto selezionato -->
                         <h5 class="m-0">{{ selectedContact().name }}</h5>
                     </header>
-                        <main>
-                            
-                        </main>
-                    </div>
+                    <main class="chat-window">
+                        <div class="date-header">
+                            <p>{{ soloData(ultimoMessaggio(selectedContact()).date) }}</p>
+                        </div>
+                        <!-- Ciclo per mostrare i messaggi -->
+                        <div v-for="message in selectedContact().messages" :class="message.status">
+                            <div class="message p-2 my-2 rounded-3">
+                                <p class="m-0">{{ message.message }}</p>
+                                <small class="text-muted">{{ soloOrario(message.date) }}</small>
+                            </div>
+                        </div>
+                    </main>
                 </div>
+            </div>
             </div>
         </main>
         <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>

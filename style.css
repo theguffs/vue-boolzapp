@@ -24,9 +24,30 @@ main{
     width: 100%;
 }
 /* parte destra */
-.sent{
-    text-align: end;
+.date-header {
+    padding: 10px;
+    text-align: center;
+    font-size: 0.8em;
+    color: white;
+    margin-bottom: 10px;
 }
-.received{
-    text-align: start;
+/* messaggi inviaTI */
+.sent {
+    text-align: right;
+    margin-left: auto;
+    max-width: 40%;
+}
+.sent .message {
+    background-color: #dcf8c6; 
+}
+
+/* Messaggi ricevuti */
+.received {
+    text-align: left;
+    margin-right: auto;
+    max-width: 40%;
+}
+.received .message {
+    background-color: #fff;
+    border: 1px solid #ddd;
 }
