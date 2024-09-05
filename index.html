@@ -38,7 +38,9 @@
                                     <img :src="contact.avatar" class="rounded-5 me-3" :alt="contact.name">
                                     <div>
                                         <h5 class="card-title m-0">{{ contact.name }}</h5>
-                                        <h6 class="card-text">{{ ultimoMessaggio(contact).message }}</h6>
+                                        <!-- Mostra l'ultimo messaggio solo se esiste almeno un messaggio (suggerito da michele) -->
+                                        <h6 class="card-text" v-if="contact.messages.length > 0">{{ ultimoMessaggio(contact).message }}</h6>
+                                        <h6 class="card-text" v-else>Nessun messaggio</h6>
                                     </div>
                                 </div>
                                 <p class="text-end text-muted m-0">{{ soloOrario(ultimoMessaggio(contact).date) }}</p>
@@ -59,17 +61,20 @@
                             <p class="text-center">
                                 {{ soloData(ultimoMessaggio(selectedContact()).date) }}
                             </p>
-                            <!-- Ciclo per mostrare i messaggi -->
-                            <div v-for="(message, messageIndex) in selectedContact().messages" :class="message.status" class="message-container position-relative">
-                                <div class="message p-2 my-2 rounded-3" @click="toggleMessageOptions(messageIndex)">
-                                    <p class="m-0">{{ message.message }}</p>
-                                    <small>{{ soloOrario(message.date) }}</small>
-                                </div>
-                                <div v-if="showMessageOptions == messageIndex" class="dropdown-menu show position-absolute">
-                                    <button class="dropdown-item">Inutile</button>
-                                    <button class="dropdown-item text-danger" @click="deleteMessage(messageIndex)">Cancella</button>
+                            <!-- Ciclo per mostrare i messaggi solo se esistono-->
+                            <div v-if="selectedContact().messages.length > 0">
+                                <div v-for="(message, messageIndex) in selectedContact().messages" :key="messageIndex" :class="message.status" class="message-container position-relative">
+                                    <div class="message p-2 my-2 rounded-3" @click="toggleMessageOptions(messageIndex)">
+                                        <p class="m-0">{{ message.message }}</p>
+                                        <small>{{ soloOrario(message.date) }}</small>
+                                    </div>
+                                    <div v-if="showMessageOptions == messageIndex" class="dropdown-menu show position-absolute">
+                                        <button class="dropdown-item">Inutile</button>
+                                        <button class="dropdown-item text-danger" @click="deleteMessage(messageIndex)">Cancella</button>
+                                    </div>
                                 </div>
                             </div>
+                            <p v-else class="text-center">chat eliminata</p>
                         </main>
                     </div>
                      <!-- chat -->

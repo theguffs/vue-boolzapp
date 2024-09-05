@@ -179,10 +179,20 @@ createApp({
     methods: {
         // metodo per mostrare l'ultimo messaggio
         ultimoMessaggio(contact) {
-          return contact.messages[contact.messages.length - 1];
+            if (contact.messages.length > 0) {
+                return contact.messages[contact.messages.length - 1];
+            }
+            else{
+            // ritorna un oggetto vuoto se non ci sono messaggi per evitare errori
+            return { message: 'Nessun messaggio', date: '' };
+        }
         },
         // Estrai solo l'orario dalla stringa `date`
         soloOrario(dateString) {
+            // Verifica se dateString è definita
+            if (!dateString) {
+                return '';
+            }
         // divide la stringa di 'date' tra uno spazio vuoto e l'altro
         let orarioSecondi = dateString.split(' ')[1].split(':');
         // divide 'orarioSecondi' con i 2 punti
@@ -190,8 +200,16 @@ createApp({
             //il return unisce la prima e la seconda parte di ArrayOrario escludendo il terzo
             return orarioSecondi[0] + ':' + orarioSecondi[1]
         },
+        // estrai solo la data dalla stringa `date`
         soloData(dateString) {
+        // verifica se dateString esiste
+            if (!dateString) {
+                return '';
+            }
+        // altrimenti splitta la parola
+            else{
             return dateString.split(' ')[0];
+            }
         },
         // Seleziona il contatto in base all'indice
         selectContact(index) {
@@ -236,17 +254,19 @@ createApp({
             if (this.showMessageOptions == index) {
             // nasconde il menu se è già aperto
                 this.showMessageOptions != null; 
-            // altrimenti mostra il menu per il messaggio cliccato
             } 
+            // altrimenti mostra il menu per il messaggio cliccato
             else {
                 this.showMessageOptions = index; 
             }
         },
         // cancella il messaggio selezeionato
         deleteMessage(index) {
-            this.selectedContact().messages.splice(index, 1);
-        // chiude il menu a tendina dopo aver eliminato il messaggio
-            this.showMessageOptions != null; 
+            if (this.selectedContact().messages.length > 0 && index >= 0) {
+                this.selectedContact().messages.splice(index, 1);
+            }
+            // Chiude il menu a tendina dopo l'eliminazione
+            this.showMessageOptions = null;
         }
     }
     
